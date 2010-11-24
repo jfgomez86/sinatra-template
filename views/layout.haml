@@ -2,13 +2,6 @@
 %html
   %head
     %title= @title || SiteConfig.title
-    %link{:href => '/main.css', :rel => 'stylesheet', :type => 'text/css'}
+    %link{:href => '/stylesheets/grid.css', :rel => 'stylesheet', :type => 'text/css'}
+    %link{:href => '/stylesheets/styles.css', :rel => 'stylesheet', :type => 'text/css'}
   %body
-    #container
-      #header
-        #logo
-          %h1
-            %a{:href => '/'}= SiteConfig.title
-      #content= yield
-      #footer
-        %p#legal= "&mdash; &copy; #{Time.now.strftime('%Y')} #{SiteConfig.author} &mdash;"

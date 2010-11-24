@@ -1,0 +1,60 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    addressable (2.2.2)
+    compass (0.10.6)
+      haml (>= 3.0.4)
+    compass-960-plugin (0.10.0)
+      compass (>= 0.10.0)
+    data_objects (0.10.2)
+      addressable (~> 2.1)
+    dm-aggregates (1.0.0)
+      dm-core (~> 1.0.0)
+    dm-core (1.0.0)
+      addressable (~> 2.1)
+      extlib (~> 0.9.15)
+    dm-do-adapter (1.0.0)
+      data_objects (~> 0.10.1)
+      dm-core (~> 1.0.0)
+    dm-migrations (1.0.0)
+      dm-core (~> 1.0.0)
+    dm-postgres-adapter (1.0.0)
+      dm-do-adapter (~> 1.0.0)
+      do_postgres (~> 0.10.2)
+    dm-timestamps (1.0.0)
+      dm-core (~> 1.0.0)
+    dm-validations (1.0.0)
+      dm-core (~> 1.0.0)
+    do_postgres (0.10.2)
+      data_objects (= 0.10.2)
+    extlib (0.9.15)
+    haml (3.0.24)
+    rack (1.2.1)
+    rack-flash (0.1.1)
+      rack
+    sass (3.1.0.alpha.39)
+    sinatra (1.1.0)
+      rack (~> 1.1)
+      tilt (~> 1.1)
+    sinatra-content-for (0.2)
+      sinatra
+    tilt (1.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  compass
+  compass-960-plugin
+  dm-aggregates
+  dm-core
+  dm-migrations
+  dm-postgres-adapter
+  dm-timestamps
+  dm-validations
+  do_postgres
+  haml
+  rack-flash
+  sass
+  sinatra
+  sinatra-content-for
