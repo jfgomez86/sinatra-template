@@ -1,0 +1,5 @@
+development:
+  database: database_name
+  user: username
+  password: password
+  host: localhost
