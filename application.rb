@@ -5,20 +5,6 @@ require 'environment'
 configure do
   set :views, "#{File.dirname(__FILE__)}/views"
   set :public, "#{File.dirname(__FILE__)}/public"
-
-  Compass.configuration do |config|
-    config.project_path     = File.dirname(__FILE__)
-    config.sass_dir         = File.join('views', 'stylesheets')
-    config.images_dir       = File.join('public', 'images')
-    config.http_images_path = "/images"
-    config.http_stylesheets_path = "/stylesheets"
-  end
-end
-
-get "/stylesheets/:name.css" do
-  content_type 'text/css', :charset => 'utf8'
-
-  sass :"stylesheets/#{params[:name]}", Compass.sass_engine_options
 end
 
 error do
@@ -28,10 +14,40 @@ error do
 end
 
 helpers do
-  # add your helpers here
+  def partial(template, options = {})
+    options.merge!(:layout => false)
+    erb("partials/#{template}".to_sym, options)
+  end
 end
 
-# root page
+get '/:page_name' do
+  @page_name = params[:page_name]
+  begin
+    erb @page_name.to_sym, :layout => "#{@page_name}_layout".to_sym
+  rescue
+    erb @page_name.to_sym rescue redirect("/")
+  end
+end
+
+get '/:folder/:page_name' do
+  @page_name = params[:page_name]
+  begin
+    erb @page_name.to_sym, :layout => "#{params[:folder]}/#{@page_name}_layout".to_sym
+  rescue
+    erb "#{params[:folder]}/#{@page_name}".to_sym rescue redirect("/")
+  end
+end
+
+get '/:folder/' do
+  @page_name = "#{params[:folder]}/index"
+  begin
+    erb @page_name.to_sym, :layout => "#{params[:folder]}/index_layout".to_sym
+  rescue
+    erb "#{params[:folder]}/index".to_sym rescue redirect("/")
+  end
+end
+
 get '/' do
-  haml :root
+  @page_name = params[:page_name]
+  erb :index
 end
