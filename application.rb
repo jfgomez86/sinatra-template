@@ -22,29 +22,7 @@ end
 
 get '/:page_name' do
   @page_name = params[:page_name]
-  begin
-    erb @page_name.to_sym, :layout => "#{@page_name}_layout".to_sym
-  rescue
-    erb @page_name.to_sym rescue redirect("/")
-  end
-end
-
-get '/:folder/:page_name' do
-  @page_name = params[:page_name]
-  begin
-    erb @page_name.to_sym, :layout => "#{params[:folder]}/#{@page_name}_layout".to_sym
-  rescue
-    erb "#{params[:folder]}/#{@page_name}".to_sym rescue redirect("/")
-  end
-end
-
-get '/:folder/' do
-  @page_name = "#{params[:folder]}/index"
-  begin
-    erb @page_name.to_sym, :layout => "#{params[:folder]}/index_layout".to_sym
-  rescue
-    erb "#{params[:folder]}/index".to_sym rescue redirect("/")
-  end
+  erb @page_name.to_sym
 end
 
 get '/' do
